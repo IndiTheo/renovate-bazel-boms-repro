@@ -1,8 +1,1 @@
-{
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "enabledManagers": ["bazel-module"],
-  "lockFileMaintenance": {
-    "enabled": false
-  }
-}
+{}

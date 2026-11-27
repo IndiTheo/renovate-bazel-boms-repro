@@ -1,12 +1,12 @@
-# renovate-bazel-boms-repro
+# 48470
 
-Minimal reproduction for Renovate's lack of native support for the `boms` attribute of
-`maven.install()` in [`MODULE.bazel`](MODULE.bazel) (bzlmod / `rules_jvm_external`).
+Reproduction for [Renovate pull request 48470](https://github.com/renovatebot/renovate/pull/48470),
+which adds native support for the `boms` attribute of `maven.install()` in `MODULE.bazel`.
 
 ## Current behavior
 
 Renovate's `bazel-module` manager parses the `artifacts` attribute of `maven.install()`, but it
-ignores the `boms` attribute entirely.
+ignores the `boms` attribute.
 
 The BOM in [`MODULE.bazel`](MODULE.bazel) is therefore never extracted, so Renovate never looks up
 new releases for it and never opens a pull request to update it:
@@ -30,15 +30,3 @@ Renovate extracts the `boms` attribute of `maven.install()` just like `artifacts
 - it uses the `maven` datasource and the `gradle` versioning, like other Maven dependencies
 - it inherits the `repositories` of the enclosing `maven.install()` call as its registry URLs
 - Renovate opens a pull request that bumps `33.4.7-jre` to `33.4.8-jre`
-
-## How to reproduce
-
-The repository contains a single `MODULE.bazel` and a minimal `renovate.json` that enables only the
-`bazel-module` manager.
-
-Run Renovate against this repository and observe that no pull request is created for
-`com.google.guava:guava-bom`, even though a newer release (`33.4.8-jre`) exists on Maven Central.
-
-## Link to the Renovate pull request
-
-<https://github.com/renovatebot/renovate/pull/48470>

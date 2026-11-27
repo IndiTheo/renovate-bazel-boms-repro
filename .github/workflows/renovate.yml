@@ -1,0 +1,42 @@
+name: Renovate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.28.13
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26.13.1
+          cache: pnpm
+
+      - name: Checkout Renovate with the boms support
+        uses: actions/checkout@v4
+        with:
+          repository: IndiTheo/renovate
+          ref: feat/bazel-module-support-boms-attribute-in-maven.install
+          path: renovate
+
+      - name: Install Renovate
+        working-directory: renovate
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Renovate
+        working-directory: renovate
+        env:
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          LOG_LEVEL: debug
+        run: pnpm start -- --repository=IndiTheo/renovate-bazel-boms-repro
