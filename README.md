@@ -39,6 +39,6 @@ The repository contains a single `MODULE.bazel` and a minimal `renovate.json` th
 Run Renovate against this repository and observe that no pull request is created for
 `com.google.guava:guava-bom`, even though a newer release (`33.4.8-jre`) exists on Maven Central.
 
-## Link to the Renovate issue or Discussion
+## Link to the Renovate pull request
 
-<https://github.com/renovatebot/renovate/issues/40625>
+<https://github.com/renovatebot/renovate/pull/48470>
