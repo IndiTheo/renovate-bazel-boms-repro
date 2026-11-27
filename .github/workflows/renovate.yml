@@ -21,7 +21,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 26.13.1
-          cache: pnpm
 
       - name: Checkout Renovate with the boms support
         uses: actions/checkout@v4
