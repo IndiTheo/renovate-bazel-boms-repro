@@ -33,7 +33,8 @@ Renovate extracts the `boms` attribute of `maven.install()` just like `artifacts
 
 ## How to reproduce
 
-The repository contains a single `MODULE.bazel` and an empty `renovate.json`.
+The repository contains a single `MODULE.bazel` and a minimal `renovate.json` that enables only the
+`bazel-module` manager.
 
 Run Renovate against this repository and observe that no pull request is created for
 `com.google.guava:guava-bom`, even though a newer release exists on Maven Central.

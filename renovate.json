@@ -1,1 +1,5 @@
-{}
+{
+  "enabledManagers": ["bazel-module"],
+  "recreateClosed": true,
+  "prHourlyLimit": 0
+}
