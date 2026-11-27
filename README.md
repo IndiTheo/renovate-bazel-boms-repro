@@ -30,3 +30,18 @@ Renovate extracts the `boms` attribute of `maven.install()` just like `artifacts
 - it uses the `maven` datasource and the `gradle` versioning, like other Maven dependencies
 - it inherits the `repositories` of the enclosing `maven.install()` call as its registry URLs
 - Renovate opens a pull request that bumps `33.4.7-jre` to `33.4.8-jre`
+
+## How to reproduce
+
+The repository contains a single `MODULE.bazel` and an empty `renovate.json`.
+
+Run Renovate against this repository and observe that no pull request is created for
+`com.google.guava:guava-bom`, even though a newer release exists on Maven Central.
+
+The [Renovate workflow](.github/workflows/renovate.yml) runs Renovate from the branch that adds
+`boms` support, so it can be used to check the fix:
+
+```sh
+gh workflow run renovate.yml
+```
+
