@@ -38,4 +38,4 @@ jobs:
         env:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           LOG_LEVEL: debug
-        run: pnpm start -- --repository=IndiTheo/renovate-bazel-boms-repro
+        run: pnpm start IndiTheo/renovate-bazel-boms-repro
